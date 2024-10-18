@@ -27,6 +27,31 @@ ingress_rules_cidr = [ {
 
 egress_rules_prefix_list = []
 ingress_rules_prefix_list = []
-egress_rules_destination_security_group = []
-ingress_rules_destination_security_group = []
-ingress_rules_self = []
+
+egress_rules_destination_security_group = [
+  {
+    from_port = 3306
+    to_port = 3306
+    protocol = "tcp"
+    destination_security = "sg-015938f1cf0c6ca31"  
+    description = "Allow MySQL traffic"
+  }
+]
+
+ingress_rules_destination_security_group = [
+  {
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    source_security = ["sg-015938f1cf0c6ca31"]  
+    description = "Allow traffic from SonarQube"
+  }
+]
+
+ingress_rules_self = [
+  {
+    from_port = 8083
+    to_port = 8083
+    protocol = "tcp"
+  }
+]
