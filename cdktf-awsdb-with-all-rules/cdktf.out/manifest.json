@@ -1,0 +1,13 @@
+{
+  "version": "0.9.4",
+  "stacks": {
+    "aws-db-sg-cdktf": {
+      "name": "aws-db-sg-cdktf",
+      "constructPath": "aws-db-sg-cdktf",
+      "workingDirectory": "stacks/aws-db-sg-cdktf",
+      "synthesizedStackPath": "stacks/aws-db-sg-cdktf/cdk.tf.json",
+      "annotations": [],
+      "dependencies": []
+    }
+  }
+}
