@@ -1,0 +1,13 @@
+{
+  "version": "0.9.4",
+  "stacks": {
+    "aws-dbsec-group": {
+      "name": "aws-dbsec-group",
+      "constructPath": "aws-dbsec-group",
+      "workingDirectory": "stacks/aws-dbsec-group",
+      "synthesizedStackPath": "stacks/aws-dbsec-group/cdk.tf.json",
+      "annotations": [],
+      "dependencies": []
+    }
+  }
+}
