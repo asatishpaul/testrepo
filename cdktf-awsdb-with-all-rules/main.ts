@@ -28,7 +28,7 @@ class MyStack extends TerraformStack {
     });
 
     // Use existing prefix list ID
-    const prefixListId = "pl-09a7a195b2b65b22a"; // Your existing prefix list ID
+    const prefixListId = "pl-0eefc4516b1220514"; // Your existing prefix list ID
 
     // Rule for allowing traffic from the prefix list
     new SecurityGroupRule(this, "allow_prefix_list", {
@@ -58,6 +58,26 @@ class MyStack extends TerraformStack {
       protocol: "tcp",
       securityGroupId: securityGroup.id,
       cidrBlocks: ["10.0.0.0/24"],
+    });
+
+    // Restrict outbound traffic to a specific CIDR block (e.g., internal network)
+    new SecurityGroupRule(this, "restrict_egress", {
+      type: "egress",
+      fromPort: 8080,
+      toPort: 8080,
+      protocol: "tcp",
+      cidrBlocks: ["192.168.0.0/16"], 
+      securityGroupId: securityGroup.id,
+    });
+
+    // Allow outbound traffic to another security group
+    new SecurityGroupRule(this, "egress_to_another_sg", {
+      type: "egress",
+      fromPort: 443,
+      toPort: 443,
+      protocol: "tcp",
+      securityGroupId: securityGroup.id,
+      sourceSecurityGroupId: "sg-028cf6074bb942d5c", 
     });
   }
 }
