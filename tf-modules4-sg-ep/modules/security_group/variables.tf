@@ -1,5 +1,3 @@
-# `modules/security_group/variables.tf`
-
 variable "sg_name" {
   description = "The name of the security group."
   type        = string
@@ -26,31 +24,33 @@ variable "subnet_ids" {
 }
 
 variable "ingress" {
-  description = "List of ingress rules."
-  type = list(object({
+  description = "Ingress rules with custom configurations."
+  type = object({
     enable_network_access      = bool
     enable_internal_vpc_access = bool
     enable_vpc_endpoint_access = list(string)
-    custom = list(object({
+    custom = map(object({
       from_port   = number
       to_port     = number
       protocol    = string
       description = string
+      cidr_blocks = list(string)
     }))
-  }))
+  })
 }
 
 variable "egress" {
-  description = "List of egress rules."
-  type = list(object({
+  description = "Egress rules with custom configurations."
+  type = object({
     enable_network_access      = bool
     enable_internal_vpc_access = bool
     enable_vpc_endpoint_access = list(string)
-    custom = list(object({
+    custom = map(object({
       from_port   = number
       to_port     = number
       protocol    = string
       description = string
+      cidr_blocks = list(string)
     }))
-  }))
+  })
 }
