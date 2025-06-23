@@ -107,7 +107,7 @@ data "aws_ssm_parameter" "vpc_id" {
         to_port     = ingress.value["to_port"]
         protocol    = ingress.value["protocol"]
         self        = true
-        description = "Self"
+        description = "Self5"
       }
     }
   }
